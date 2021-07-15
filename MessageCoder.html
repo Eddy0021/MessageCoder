@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Top Secret MessageCoder</title>
+    <style>
+        #grad1 {
+        height: 400px;
+        background-color: gray; 
+        background-image: linear-gradient(black, white); 
+        } 
+        #grad2 {
+        height: 390px;
+        background-color: gray; 
+        background-image: linear-gradient(white, black); 
+        } 
+        #myForm{
+            margin-top:50px;
+        }
+        #one
+        {      
+        width:500px;
+        height:50;
+        font-size:12pt;
+        }
+        #two
+        {
+        width:500px;
+        height:50;
+        font-size:12pt;  
+        resize:vertical;    
+        } 
+           
+    </style>
+</head>
+<body>
+    <div id="grad1"></div>
+    <form id="myForm" align="center">
+        <label style="font-size: 14pt;" >Text you want to code/decode:</label><br>
+        <input type="text" id="one" name="one"><br>
+        <label style="font-size: 14pt;">Result:</label><br>
+        <textarea type="text" id="two" name="two" readonly></textarea><br>
+        <input type="button" value="Code/Decode Message" onclick=messageCoder()>
+      </form>
+
+    <div id="grad2"></div>
+
+    <script>
+        function messageCoder() {
+            alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+            "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
+            ,"1","2","3","4","5","6","7","8","9","0","'","?","!","@",",","_","-",":"];
+            backalphabet = ['z','y','x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a',
+            "Z","Y","X","W","V","U","T","S","R","Q","P","O","N","M","L","K","J","I","H","G","F","E","D","C","B","A"
+            ,"0","9","8","7","6","5","4","3","2","1",":","-","_",",","@","!","?","'"];
+
+            var str = document.getElementById('one').value; 
+            str.split('');
+
+            var result = new Array;
+
+            for(var i=0;i<str.length;i++){
+                for(var z=0;z<alphabet.length;z++){
+                    if(str[i] == ' '){
+                        result.push(' ');   
+                        break;               
+                    }else{
+                        if(str[i] == alphabet[z]){
+                            result.push(backalphabet[z]);                                                 
+                        }
+                    }
+                }   
+            }
+
+            var text ="";
+            for (var member in result) {
+                text += result[member];
+            }
+
+
+            document.getElementById("two").value = text;
+
+        }
+    </script>
+
+</body>
+</html>
